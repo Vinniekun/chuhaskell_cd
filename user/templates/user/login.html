@@ -7,7 +7,6 @@
     {{ block.super }}
     <!-- Animate.css -->
     <link href="/static/vendors/animate.css/animate.min.css" rel="stylesheet">
-    <script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock stylesheets %}
 {% block body_class %}login{% endblock body_class %}
 {% block body %}
@@ -26,9 +25,7 @@
             <div class="animate form login_form">
                 {% load static %}
                 {#                <center>#}
-                <a href=""><img src="{% static "portal/images/mg.png" %}" alt=""
-                                title="Logo Lunix" width="150" height="172"/>
-                </a>
+                
                 {#                </center>#}
                 <section class="login_content">
                     {% for message in messages %}
@@ -37,7 +34,7 @@
                         </div>
                     {% endfor %}
                     <form action="{% url 'login' %}" method="post">{% csrf_token %}
-                        <img src="/static/images/logo-lunix.png">
+                        <img src="/static/images/logo.png" width="300" height="200">
                         {% for error in form.non_field_errors %}
                             <div class="alert alert-danger" style="margin-top: 20px">
                                 {{ error }}
