@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from core.openweather.api_requests import *
-from models import *
+from sensor.models import *
 from random import randint
 from datetime import datetime
 
@@ -24,7 +24,6 @@ def climate(request):
         city, state = local.cidade, local.estado
         if [city, state] in opened_places:
             continue
-        else:
         opened_places.append([city, state])
         dic_for = {'cidade':city, 'estado':state, 'forecast':[]}
         forecast = get_7days_forecast(lat, lon)
