@@ -1,3 +1,7 @@
+<p align="center">
+  <img alt="Agrolytics" src="img/logo.png">
+</p>
+
 # Agrolytics - Gerenciamento remoto de campos de cultivo
 
 Ferramenta de monitoramento destinado ao agronegócio, utilizando tabelas, gráficos e sensores.
@@ -42,5 +46,5 @@ Para a geração de receita por meio da aplicação optou-se uma mensalidade par
  
 <h3>Projeto desenvolvido pela equipe Chuhaskell</h3>
 <p align="center">
-  <img src="prints/chuhaskell.jpg">
+  <img src="img/chuhaskell.jpg">
 </p>
