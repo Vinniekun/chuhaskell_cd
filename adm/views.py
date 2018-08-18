@@ -98,7 +98,7 @@ class AddLocal(SuccessMessageMixin, CreateView):
     form_class = LocalForm
     template_name = 'adm/crud.html'
     success_message = 'Local Adicionada'
-    success_url = 'adm/locais'
+    success_url = '/adm/locais'
     extra_context = {'title': 'Adicionar Local'}
 
     # def get_success_url(self):

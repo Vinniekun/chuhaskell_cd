@@ -34,6 +34,7 @@
                             <th>Pais/Estado</th>
                             <th>Cidade</th>
                             <th>Local</th>
+                            <th>Responsável</th>
                             <th>Imagem</th>
                             <th></th>
                         </tr>
@@ -44,6 +45,7 @@
                                 <td>{{ local.pais }}/{{ local.estado }}</td>
                                 <td>{{ local.cidade }}</td>
                                 <td>{{ local.nome }}</td>
+                                <td>{{ request.user }}</td>
                                 {% if not local.dir_imagem %}
                                  <td style="text-align: center!important;">
                                     <img style="height: 150px" src="{% static 'images/empresa.png' %}"></td>
