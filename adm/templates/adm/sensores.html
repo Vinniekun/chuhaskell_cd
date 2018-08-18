@@ -40,7 +40,11 @@
                         </thead>
                         <tbody>
                         {% for sensor in sensores %}
-                            <tr>
+                            <tr {% if sensor.status %}
+                                    class="bg-green" style="color: black"
+                                {% else %}
+                                    class="bg-red" style="color: white"
+                                {% endif %}>
                                 <td>{{ sensor.local.pais }}/{{ sensor.local.estado }}</td>
                                 <td>{{ sensor.local.cidade }}</td>
                                 <td>{{ sensor.local.usuario }}</td>

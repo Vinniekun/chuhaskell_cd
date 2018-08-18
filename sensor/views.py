@@ -25,10 +25,10 @@ def sensor(request, id):
         temp += i.temperatura
         umid = i.umidade
         luz = i.luz
-
-    temp = temp/media.count()
-    umid = umid / media.count()
-    luz = luz / media.count()
+    if media.count()>0:
+        temp = temp/media.count()
+        umid = umid / media.count()
+        luz = luz / media.count()
     historico = Historico.objects.filter(sensor=sensor)
     context = {
         'sensor': sensor,

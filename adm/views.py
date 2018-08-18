@@ -139,6 +139,7 @@ class AddSensor(SuccessMessageMixin, CreateView):
     template_name = 'adm/crud.html'
     success_message = 'Sensor Adicionada'
     extra_context = {'title': 'Adicionar Sensor'}
+    success_url = '/adm/sensores'
 
     # def get_success_url(self):
     #     pass
@@ -150,6 +151,7 @@ class SensorUpdate(SuccessMessageMixin, UpdateView):
     template_name = 'adm/crud.html'
     success_message = 'Sensor Atualizado'
     extra_context = {'title': 'Editar Sensor'}
+    success_url = '/adm/sensores'
 
 
 @method_decorator(staff_member_required, name='dispatch')
