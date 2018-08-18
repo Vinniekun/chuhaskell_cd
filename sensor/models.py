@@ -7,6 +7,7 @@ class Local(models.Model):
     pais = models.CharField('País', max_length=50)
     estado = models.CharField('Estado', max_length=50)
     cidade = models.CharField('Cidade', max_length=50)
+    nome = models.CharField('Nome de Identificação', max_length=50, unique=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     coord_NW_long = models.FloatField('Coordenada NW long')
     coord_NW_lat = models.FloatField('Coordenada NW lat')
@@ -14,8 +15,7 @@ class Local(models.Model):
     coord_SE_lat = models.FloatField('Coordenada SE lat')
 
     def __str__(self):
-        return self.pais + '/' + self.estado + '/' + self.cidade + '/(' + str(self.coord_NW_long) + ',' + str(
-            self.coord_NW_lat) + ')(' + str(self.coord_SE_long) + ',' + str(self.coord_SE_lat) + ')'
+        return self.pais + '/' + self.estado + '/' + self.cidade + '/' + self.nome
 
 
 class Sensor(models.Model):
@@ -24,7 +24,7 @@ class Sensor(models.Model):
     latitude = models.FloatField('Latitude')
 
     def __str__(self):
-        return self.local.usuario.username + '/' + str(self.id)
+        return self.local.nome + '/' + str(self.id)
 
 
 class Historico(models.Model):

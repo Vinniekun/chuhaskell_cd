@@ -6,5 +6,5 @@ app_name = 'sensor'
 
 urlpatterns = [
     # The home page
-    path('list', views.list, name='list'),
+    path('list', views.sensores, name='list'),
 ]
