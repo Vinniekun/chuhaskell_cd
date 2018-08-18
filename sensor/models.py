@@ -8,6 +8,11 @@ class Local(models.Model):
     estado = models.CharField('Estado', max_length=50)
     cidade = models.CharField('Cidade', max_length=50)
     nome = models.CharField('Nome de Identificação', max_length=50, unique=True)
+    
+    def locais(self, filename):
+        return 'locais/' + str(self.empresa) + '.' + filename.split('.')[-1]
+
+    dir_imagem = models.ImageField('Imagem', upload_to=locais, blank=True, null=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     coord_NW_long = models.FloatField('Coordenada NW long')
     coord_NW_lat = models.FloatField('Coordenada NW lat')

@@ -17,17 +17,21 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
-from user import views
 from django.contrib.auth.views import login, logout
 from user.forms import UserAdminCreationForm
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    url(r'^entrar$', login,
-        {'template_name': 'user/login.html',
-         'extra_context': {'formup': UserAdminCreationForm}
-         }, name='login'),
-    url(r'^sair$', logout, {'next_page': 'login'}, name='logout'),
-    path('', include('core.urls')),
-    path('sensores/', include('sensor.urls', namespace='sensor',)),
-]
+                  path('admin/', admin.site.urls),
+                  url(r'^entrar$', login,
+                      {'template_name': 'user/login.html',
+                       'extra_context': {'formup': UserAdminCreationForm}
+                       }, name='login'),
+                  url(r'^sair$', logout, {'next_page': 'login'}, name='logout'),
+                  path('', include('core.urls')),
+                  path('sensores/', include('sensor.urls', namespace='sensor', )),
+                  path('adm/', include('adm.urls', namespace='adm')),
+                  path('user/', include('user.urls', namespace='user')),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

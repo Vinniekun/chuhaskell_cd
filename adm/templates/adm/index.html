@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Empresas {% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock stylesheets %}
+
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+   {% if request.user.is_staff %}
+        <h3>Administração</h3>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <a href="{% url 'adm:usuarios' %}">
+                            <div class="icon"><i class="fa fa-user"></i></div>
+                            <div class="count">{{ countUsuarios }}</div>
+                            <h3>Usuários</h3>
+                            <p>Consultar ou cadastrar usários para localidades.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="{% url 'adm:locais' %}">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-building"></i></div>
+                            <div class="count">{{ locais }}</div>
+                            <h3>Locais</h3>
+                            <p>Consultar ou cadastrar Localidades.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="{% url 'adm:sensores' %}">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-university"></i></div>
+                            <div class="count">{{ countMunicipios }}</div>
+                            <h3>Sensores</h3>
+                            <p>Consultar ou cadastrar municípios</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ block.super }}
+{% endblock javascripts %}
