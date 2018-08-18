@@ -13,6 +13,6 @@ while True:
             umi = random.randrange(0,100)
             luz = random.randrange(0,100)
             if Sensor.objects.get(id=i['id']).status:   
-                h = Historico.objects.create(sensor_id=i['id'],temperatura=temp,umidade=umi,luz=luz,time=ago)
+                h = Historico.objects.create(sensor_id=i['id'],temperatura=temp,umidade_solo=umi, umidade_ar=umi, luz=luz,time=ago)
                 h.save()
     time.sleep(10)

@@ -36,7 +36,7 @@
                     <li><a href="{% url 'adm:index' %}"><i class="fa fa-wrench"></i>Administrador</a>
                 {% endif %}
                 <li><a href="{% url 'sensor:list' %}"><i class="fa fa-list-alt"></i>Lista de Sensores</a>
-                <li><a href=""><i class="fa fa-area-chart"></i>Gráficos</a>
+                <li><a href="{% url 'graphs' %}"><i class="fa fa-area-chart"></i>Gráficos</a>
                 <li><a href="{% url 'climate' %}"><i class="fa fa-cloud"></i>Clima e Tempo</a>
                 </li>
             </ul>
