@@ -1,6 +1,6 @@
 <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-        <a href="{% url 'index' %}" class="site_title"><i class="fa fa-lightbulb-o"></i> <span>Lunix</span></a>
+        <a href="{% url 'index' %}" class="site_title"><i class="fa fa-leaf"></i> <span>Agrolytics</span></a>
     </div>
 
     <div class="clearfix"></div>
@@ -15,7 +15,7 @@
             {% endif %}
         </div>
         <div class="profile_info">
-            <span>Logado como:</span>
+            <span>Bem-vindo</span>
             <h2>{{ request.user }}</h2>
         </div>
     </div>
@@ -32,7 +32,9 @@
                         <i class="fa fa-home"></i> Início
                     </a>
                 </li>
-                <li><a href=""><i class="fa fa-building"></i>Meus Locais</a>
+                <li><a href=""><i class="fa fa-list-alt"></i>Lista de Sensores</a>
+                <li><a href=""><i class="fa fa-area-chart"></i>Gráficos</a>
+                <li><a href="{% url 'climate' %}"><i class="fa fa-cloud"></i>Clima e Tempo</a>
                 <li><a href=""><i class="fa fa-info-circle"></i> Sobre</a>
                 <li><a href=""><i class="fa fa-life-bouy"></i> Suporte</a>
                 </li>
