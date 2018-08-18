@@ -109,65 +109,32 @@ $("#consumoTotalDia").ready( function() {
 	});
 });
 
-//consumo local
-//mes
-$("#consumoLocalmes").ready( function() {
-	var ctx = document.getElementById("consumoLocalmes").getContext('2d');
+$("#HumidadeSolo").ready( function() {
+	var ctx = document.getElementById("HumidadeSolo").getContext('2d');
+	var datasets = [];
+	var labels = [];
 
-	var dataToPlot = []; labelsToPlot = [];
-
-	for(var i = 0; i < newData.length; i++) {
-		dataToPlot.push(newData[i].split(' ')[1]);
-		labelsToPlot.push("Dia " + newData[i].split(' ')[0]);
-    }
-
-	var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-			labels: labelsToPlot,
-			datasets: [{
-				label: 'Consumo dos últimos 30 dias',
-				steppedLine: false,
-				data: dataToPlot,
-				borderColor: 'rgba(75, 192, 192, 1)',
-				fill: false,
-			}]
-		},
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-		    scales: {
-		        yAxes: [{
-		            ticks: {
-		                beginAtZero:true
-		            }
-		        }]
-		    }
+	for(var i = 0; i < dataHumSolo.length; i++) {
+		var dataToPlot = []; labelsToPlot = [];
+		for (var j=0; j < dataHumSolo[i].length; j++){
+			dataToPlot.push(dataHumSolo[i].split('#')[1]);
+			labelsToPlot.push(dataHumSolo[i].split('#')[0]);
 		}
-	});
-});
-//semana
-$("#consumoLocalSemana").ready( function() {
-	var ctx = document.getElementById("consumoLocalSemana").getContext('2d');
-
-	var dataToPlot = []; labelsToPlot = [];
-
-	for(var i = 0; i < newData.length; i++) {
-		dataToPlot.push(newData[i].split(' ')[1]);
-		labelsToPlot.push("Dia " + newData[i].split(' ')[0]);
+		datasets.push({
+			label: idSensores[i],
+			steppedLine: false,
+			data: dataToPlot,
+			//borderColor: 'rgba(75, 192, 192, 1)',
+			fill: false,
+		});
+		labels.push(labelsToPlot);
     }
 
 	var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-			labels: labelsToPlot,
-			datasets: [{
-				label: 'Consumo dos últimos 7 dias',
-				steppedLine: false,
-				data: dataToPlot,
-				borderColor: 'rgba(75, 192, 192, 1)',
-				fill: false,
-			}]
+			labels: labels,
+			datasets: datasets
 		},
 		options: {
 			responsive: true,
