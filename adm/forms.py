@@ -29,7 +29,7 @@ class BaseForm(forms.ModelForm):
 #
 #
 class LocalForm(BaseForm):
-    cep = BRZipCodeField(label='CEP')
+    # cep = BRZipCodeField(label='CEP')
 
     class Meta:
         model = Local

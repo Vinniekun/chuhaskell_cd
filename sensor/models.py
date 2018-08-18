@@ -25,8 +25,13 @@ class Local(models.Model):
 
 class Sensor(models.Model):
     local = models.ForeignKey(Local, on_delete=models.CASCADE)
+    status = models.BooleanField('Ligado')
     longitude = models.FloatField('Longitude')
     latitude = models.FloatField('Latitude')
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('sensor:sensor', kwargs={'id': self.id})
 
     def __str__(self):
         return self.local.nome + '/' + str(self.id)
@@ -39,5 +44,9 @@ class Historico(models.Model):
     umidade = models.FloatField('Umidade')
     luz = models.FloatField('Iluminação')
 
+
+    class Meta:
+        ordering = ['time']
+
     def __str__(self):
-        return self.sensor
+        return self.sensor.__str__()
