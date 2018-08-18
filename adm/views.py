@@ -19,7 +19,9 @@ from django.urls import reverse_lazy
 
 @staff_member_required
 def index(request):
-    return render(request, 'adm/index.html', {})
+    return render(request, 'adm/index.html', {'countUsuarios': User.objects.all().count(),
+                                              'countLocais': Local.objects.all().count(),
+                                              'countSensores': Sensor.objects.all().count()})
 
 # USUARIOS
 @staff_member_required

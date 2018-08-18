@@ -17,7 +17,7 @@
         <h3>Administração</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="tile-stats">
                         <a href="{% url 'adm:usuarios' %}">
                             <div class="icon"><i class="fa fa-user"></i></div>
@@ -27,21 +27,21 @@
                         </a>
                     </div>
                 </div>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <a href="{% url 'adm:locais' %}">
                         <div class="tile-stats">
                             <div class="icon"><i class="fa fa-building"></i></div>
-                            <div class="count">{{ locais }}</div>
+                            <div class="count">{{ countLocais }}</div>
                             <h3>Locais</h3>
                             <p>Consultar ou cadastrar Localidades.</p>
                         </div>
                     </a>
                 </div>
-                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <a href="{% url 'adm:sensores' %}">
                         <div class="tile-stats">
                             <div class="icon"><i class="fa fa-university"></i></div>
-                            <div class="count">{{ countMunicipios }}</div>
+                            <div class="count">{{ countSensores }}</div>
                             <h3>Sensores</h3>
                             <p>Consultar ou cadastrar municípios</p>
                         </div>
