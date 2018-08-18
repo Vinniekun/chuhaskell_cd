@@ -23,11 +23,7 @@ def index(request):
 
 @login_required
 def climate(request):
-<<<<<<< HEAD
     local_objs = Local.objects.filter(usuario=request.user.id)
-=======
-    _locals = Local.objects.filter(usuario=request.user)
->>>>>>> a4914162a48fd4ebd22fa82beec6ce05c3e2994d
     opened_places = []
     locais = []
     weekday = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
