@@ -28,13 +28,13 @@ def climate(request):
         opened_places.append([city, state])
         dic_for = {'cidade':city, 'estado':state, 'forecast':[]}
         forecast = get_7days_forecast(lat, lon)
-        for day in forecast['list'][::8]:
+        for i, day in enumerate(forecast['list'][::8]):
             dt = datetime.fromtimestamp(day['dt'])
             day_data = {
-                'temperatura': day['main']['temp'],
+                'temperatura': day['main']['temp'] if i == 0 else int(day['main']['temp']),
                 'descricao': day['weather'][0]['description'],
                 'icone': get_icon_name(day['weather'][0]['id']),
-                'dia': weekday[dt.weekday()],
+                'dia': weekday[dt.weekday()] if i == 0 else weekday[dt.weekday()][:3],
                 'hora': datetime.now().strftime('%H:%M')
             }
             dic_for['forecast'].append(day_data)
