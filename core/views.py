@@ -14,8 +14,7 @@ def index(request):
 
 @login_required
 def climate(request):
-    _locals = Local.objects.filter(usuario=request.user.id) # user_id?
-    #TODO: consultas à api do openwheatermap
+    _locals = Local.objects.filter(usuario=request.user.id)
     opened_places = []
     weekday = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
     locais = []
@@ -25,16 +24,16 @@ def climate(request):
         if [city, state] in opened_places:
             continue
         opened_places.append([city, state])
-        dic_for = {'cidade':city, 'estado':state, 'forecast':[]}
+        dic_for = {'cidade':city, 'estado':state, 'hora': datetime.now().strftime('%H:%M'), 'forecast':[]}
         forecast = get_7days_forecast(lat, lon)
         for i, day in enumerate(forecast['list'][::8]):
             dt = datetime.fromtimestamp(day['dt'])
             day_data = {
                 'temperatura': day['main']['temp'] if i == 0 else int(day['main']['temp']),
                 'descricao': day['weather'][0]['description'],
+                'vento': day['wind']['speed'],
                 'icone': get_icon_name(day['weather'][0]['id']),
                 'dia': weekday[dt.weekday()] if i == 0 else weekday[dt.weekday()][:3],
-                'hora': datetime.now().strftime('%H:%M')
             }
             dic_for['forecast'].append(day_data)
         locais.append(dic_for)
