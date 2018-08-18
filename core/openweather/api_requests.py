@@ -18,3 +18,14 @@ def get_icon_name(id):
     for icon, id_ in icon_names:
         if id >= id_:
             return icon
+
+def get_day_forecast(lat,lon):
+    params = {
+        'appid': API_KEY,
+        'units': 'metric',
+        'lat': float(lat),
+        'lon': float(lon)
+    }
+    url = "http://api.openweathermap.org/data/2.5/weather"
+    resp = requests.post(url=url, params=params)
+    return resp.json()

@@ -9,13 +9,25 @@ import math
 # Create your views here.
 @login_required
 def index(request):
+    #dados da primeira cidade
+    _locals = Local.objects.filter(usuario=request.user.id)
+    local = _locals.first()
+    forecast = None
+    if local:
+        forecast = get_day_forecast(local.coord_NW_lat, local.coord_NW_lat)
+    
+    #grafico
     consumoDia = [[i, randint(100, 200)] for i in range(20)]
     print(consumoDia)
-    return render(request, 'core/index.html', {'consumoDia':consumoDia})
+    return render(request, 'core/index.html', {'consumoDia':consumoDia, 'local':local, 'forecast':forecast})
 
 @login_required
 def climate(request):
+<<<<<<< HEAD
     local_objs = Local.objects.filter(usuario=request.user.id)
+=======
+    _locals = Local.objects.filter(usuario=request.user)
+>>>>>>> a4914162a48fd4ebd22fa82beec6ce05c3e2994d
     opened_places = []
     locais = []
     weekday = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']

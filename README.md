@@ -4,25 +4,21 @@
 
 # Agrolytics - Gerenciamento remoto de campos de cultivo
 
-Ferramenta de monitoramento destinado ao agronegócio, utilizando tabelas, gráficos e sensores.
-
-## Screenshots
-
-
+Ferramenta de monitoramento destinado ao agronegócio, utilizando tabelas, gráficos e sensores. A Agrolytics tem o proposito de facilitar o gerenciamento do produtor agronomo, auxiliando com informações em tempo real do clima local e a partir de sensores instalados nas propriedades do cliente, que geram informaçãos a toda hora.
 
 ## Estrutura do Projeto:
 
 ### Sensores
 
-O usuário poderá ter o controle dos seus sensores instalado em uma lista dos locais instalados, apresentando o seu estado, coordenadas e mapa.
+O usuário poderá ter o controle dos seus sensores instalado em uma lista dos locais instalados, apresentando o seu estado atual, temperaturas, umidades, iluminação, coordenadas e sua localização no mapa.
 
 ### Gráficos
 
-O Sistema disponibiliza gráficos a partir dos dados coletados dos sensores, apresentando tabelas do dia, semana e até um mês. 
+O Sistema disponibiliza gráficos a partir dos dados coletados dos sensores, apresentando tabelas do dia, semana e até mês. 
 
 ### Clima
 
-Uma opção de verificação de clima é disponibilizado contendo informações do tempo, como temperatura, umidade e iluminosidade das cidades cadastradas do usuário.
+Uma opção de verificação de clima é disponibilizado para informar o tempo das cidades que o cliente possui sensores, as informações disponiveis são: temperatura, umidade, iluminosidade, vento e previsões como chuva, sol ou geada. Podem ser vistas até 5 dias a frente. 
 
 ### Interface
 
