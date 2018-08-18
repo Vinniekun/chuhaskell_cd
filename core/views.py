@@ -10,8 +10,10 @@ from datetime import datetime
 def index(request):
     #dados da primeira cidade
     _locals = Local.objects.filter(usuario=request.user.id)
-    local = _locals[0]
-    forecast = get_day_forecast(local.coord_NW_lat, local.coord_NW_lat)
+    local = _locals.first()
+    forecast = None
+    if local:
+        forecast = get_day_forecast(local.coord_NW_lat, local.coord_NW_lat)
     
     #grafico
     consumoDia = [[i, randint(100, 200)] for i in range(20)]
@@ -20,7 +22,7 @@ def index(request):
 
 @login_required
 def climate(request):
-    _locals = Local.objects.filter(usuario=request.user.id)
+    _locals = Local.objects.filter(usuario=request.user)
     opened_places = []
     weekday = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
     locais = []
