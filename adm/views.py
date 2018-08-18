@@ -95,8 +95,8 @@ class AddLocal(SuccessMessageMixin, CreateView):
     model = Local
     form_class = LocalForm
     template_name = 'adm/crud.html'
-    success_message = 'Empresa Adicionada'
-    extra_context = {'title': 'Adicionar Empresa'}
+    success_message = 'Local Adicionada'
+    extra_context = {'title': 'Adicionar Local'}
 
     # def get_success_url(self):
     #     pass
@@ -106,15 +106,15 @@ class LocalUpdate(SuccessMessageMixin, UpdateView):
     model = Local
     form_class = LocalForm
     template_name = 'adm/crud.html'
-    success_message = 'Empresa Atualizada'
-    extra_context = {'title': 'Editar Empresa'}
+    success_message = 'Local Atualizado'
+    extra_context = {'title': 'Editar Local'}
 
 
 @method_decorator(staff_member_required, name='dispatch')
 class LocalDelete(SuccessMessageMixin, DeleteView):
     model = Local
     success_url = reverse_lazy('adm:locais')
-    success_message = 'Empresa Deletada'
+    success_message = 'Local Deletado'
     template_name = 'adm/confirm_delete.html'
 
 
@@ -133,8 +133,8 @@ class AddSensor(SuccessMessageMixin, CreateView):
     model = Sensor
     form_class = SensorForm
     template_name = 'adm/crud.html'
-    success_message = 'Empresa Adicionada'
-    extra_context = {'title': 'Adicionar Empresa'}
+    success_message = 'Sensor Adicionada'
+    extra_context = {'title': 'Adicionar Sensor'}
 
     # def get_success_url(self):
     #     pass
@@ -144,15 +144,15 @@ class SensorUpdate(SuccessMessageMixin, UpdateView):
     model = Sensor
     form_class = SensorForm
     template_name = 'adm/crud.html'
-    success_message = 'Empresa Atualizada'
-    extra_context = {'title': 'Editar Empresa'}
+    success_message = 'Sensor Atualizado'
+    extra_context = {'title': 'Editar Sensor'}
 
 
 @method_decorator(staff_member_required, name='dispatch')
 class SensorDelete(SuccessMessageMixin, DeleteView):
     model = Sensor
     success_url = reverse_lazy('adm:Sensor')
-    success_message = 'Empresa Deletada'
+    success_message = 'Sensor Deletado'
     template_name = 'adm/confirm_delete.html'
 
 

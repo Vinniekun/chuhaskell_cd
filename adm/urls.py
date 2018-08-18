@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^addlocal$', views.AddLocal.as_view(), name='addlocal'),
 
     url(r'^sensores$', views.sensores, name='sensores'),
-    path('sensor/<int:pk>/change/', views.LocalUpdate.as_view(), name='editsensor'),
-    path('sensor/<int:pk>/delete/', views.LocalDelete.as_view(), name='deletesensor'),
+    path('sensor/<int:pk>/change/', views.SensorUpdate.as_view(), name='editsensor'),
+    path('sensor/<int:pk>/delete/', views.SensorDelete.as_view(), name='deletesensor'),
     url(r'^addsensor$', views.AddSensor.as_view(), name='addsensor'),
 ]
