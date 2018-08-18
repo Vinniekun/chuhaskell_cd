@@ -7,110 +7,82 @@
     {% for local in locais %}
         <!-- start of weather widget -->
     <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="x_panel">
-              <div class="x_title">
-                <h2>{{ local.cidade }}<small> {{ local.estado}}</small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <!--<li><a href="#">Settings 1</a>
-                      </li>
-                      <li><a href="#">Settings 2</a>
-                      </li>-->
-                    </ul>
-                  </li>
-                  <li><a class="close-link"><i class="fa fa-close"></i></a>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div class="x_content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="temperature"><b>{{ local.forecast.0.dia }}</b>, {{ local.hora }}
-                      <span><b>C</b>
-                                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <div class="weather-icon">
-                      <span>
-                                          <canvas height="84" width="84" id="{{ local.forecast.0.icone }}"></canvas>
-                                      </span>
-    
-                    </div>
-                  </div>
-                  <div class="col-sm-8">
-                    <div class="weather-text">
-                      <h2>{{ local.cidade }}
-                                          <br><i>{{ local.forecast.0.descricao}}</i>
-                                      </h2>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class="weather-text pull-right">
-                    <h3 class="degrees">{{ local.forecast.0.temperatura }}</h3>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-    
-                
-                <div class="row weather-days">
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">{{ local.forecast.1.dia }}</h2>
-                      <h3 class="degrees">{{ local.forecast.1.temperatura }}</h3>
-                      <span>
-                        <canvas id="{{ local.forecast.1.icone }}" width="32" height="32"></canvas>
-                                      </span>
-                                      <h5>{{ local.forecast.1.vento }}
-                                            <i>km/h</i>
-                                        </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">{{ local.forecast.2.dia }}</h2>
-                      <h3 class="degrees">{{ local.forecast.2.temperatura }}</h3>
-                      <canvas height="32" width="32" id="{{ local.forecast.2.icone }}"></canvas>
-                      <h5>{{ local.forecast.2.vento }}
-                            <i>km/h</i>
-                        </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">{{ local.forecast.3.dia }}</h2>
-                      <h3 class="degrees">{{ local.forecast.3.temperatura }}</h3>
-                      <canvas height="32" width="32" id="{{ local.forecast.3.icone }}"></canvas>
-                      <h5>{{ local.forecast.3.vento }}
-                            <i>km/h</i>
-                        </h5>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="daily-weather">
-                      <h2 class="day">{{ local.forecast.4.dia }}</h2>
-                      <h3 class="degrees">{{ local.forecast.4.temperatura }}</h3>
-                      <canvas height="32" width="32" id="{{ local.forecast.4.icone }}"></canvas>
-                      <h5>{{ local.forecast.4.vento }}
-                            <i>km/h</i>
-                        </h5>
-                    </div>
-                  </div>
-                  
-                  <div class="clearfix"></div>
-                
-                </div>
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>{{ local.cidade }}<small> {{ local.estado}}</small></h2>
+          <ul class="nav navbar-right panel_toolbox">
+            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+              <ul class="dropdown-menu" role="menu">
+                <!--<li><a href="#">Settings 1</a>
+                </li>
+                <li><a href="#">Settings 2</a>
+                </li>-->
+              </ul>
+            </li>
+            <li><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="temperature"><b>{{ local.forecast.0.dia }}</b>, {{ local.hora }}
+                <span><b>C</b>
+                </span>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="weather-icon">
+                <span>
+                  <canvas height="84" width="84" id="{{ local.forecast.0.icone }}"></canvas>
+                </span>
+
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="weather-text">
+                <h2>{{ local.cidade }}
+                  <br><i>{{ local.forecast.0.descricao}}</i>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="weather-text pull-right">
+              <h3 class="degrees">{{ local.forecast.0.temperatura }}</h3>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          
+          <div class="row weather-days">
+            {% for day in local.forecast %}
+            {% if forloop.counter0 %}
+            <div class="col-sm-2">
+              <div class="daily-weather">
+                <h2 class="day">{{ day.dia }}</h2>
+                <h3 class="degrees">{{ day.temperatura }}</h3>
+                <canvas id="{{ day.icone }}" width="32" height="32"></canvas>
+                <h5>{{ day.vento }}
+                  <i>km/h</i>
+                </h5>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            
+            <div class="clearfix"></div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
           <!-- end of weather widget -->
     {% endfor %}
 
