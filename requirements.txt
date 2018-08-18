@@ -1,4 +1,4 @@
-django==2.0.6
+django
 django-widget-tweaks==1.4.2
 pillow
 django-watson
