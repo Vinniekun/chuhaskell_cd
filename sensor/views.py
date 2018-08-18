@@ -15,7 +15,7 @@ def sensores(request):
     return render(request, 'sensor/list.html', context)
 
 def sensor(request, id):
-    ago = datime.now() - timedelta(days=30)
+    ago = datetime.now() - timedelta(days=30)
     sensor = Sensor.objects.get(id=id)
     historico = Historico.objects.filter(sensor=sensor).values_list()
     context = {

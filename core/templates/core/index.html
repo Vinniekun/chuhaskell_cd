@@ -20,26 +20,25 @@
     <!-- Dados Relevantes -->
     <div class="row tile_count">
         <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i> Cidade</span>
-            <div class="count">{{ consumoSemana1 }}
-                <small>w</small>
+            <span class="count_top"><i class="fa fa-user"></i> Cidade </span>
+            <div class="count">{{ local.cidade }}
             </div>
-            <span class="count_bottom"></i> ESTADO DA CIDADE</span>
+            <span class="count_bottom"></i> {{ local.estado }}</span>
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
             <span class="count_top"><i class="fa fa-globe"></i> Temperatura</span>
-            <div class="count green">2,500</div>
-            <span class="count_bottom"><i class="verde"><i class="fa fa-sort-asc"></i>34% </i> Semana passada</span>
+            <div class="count green">{{ forecast.main.temp }} ºC</div>
+            
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
             <span class="count_top"><i class="fa fa-tint"></i> Umidade</span>
-            <div class="count">4,567</div>
-            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> Semana passada</span>
+            <div class="count">{{ forecast.main.humidity }}%</div>
+            
         </div>
         <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
-            <span class="count_top"><i class="fa fa-sun-o"></i> Luminosidade</span>
-            <div class="count">123.50</div>
-            <span class="count_bottom"><i class="verde"><i class="fa fa-sort-asc"></i>3% </i> Semana passada</span>
+            <span class="count_top"><i class="fa fa-sun-o"></i> Pressão</span>
+            <div class="count"> {{ forecast.main.pressure }}</div>
+            
         </div>
 
     </div>
