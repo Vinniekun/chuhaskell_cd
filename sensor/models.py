@@ -41,7 +41,8 @@ class Historico(models.Model):
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     time = models.DateTimeField('Timestamp', auto_now_add=True)
     temperatura = models.FloatField('Temperatura')
-    umidade = models.FloatField('Umidade')
+    umidade_solo = models.FloatField('Umidade Solo')
+    umidade_ar = models.FloatField('Umidade Ar')
     luz = models.FloatField('Iluminação')
 
 

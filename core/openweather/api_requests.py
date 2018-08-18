@@ -2,7 +2,7 @@ import requests, json
 
 API_KEY = "6227b12aaca6549ff612b4364641f039"
 
-def get_7days_forecast(lat, lon):
+def get_5days_forecast(lat, lon):
     params = {
         'appid': API_KEY,
         'units': 'metric',

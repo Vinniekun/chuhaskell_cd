@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %} Gráficos {% endblock title %}
+
+{% block content %}
+
+    <select onchange="location = this.value;">
+        {% for local in local_items %}
+            <option value="/graphs/?id={{ local.1 }}">{{ local.0 }}</option></a>
+        {% endfor %}
+    </select> 
+
+    <div class="x_title">
+        <h3>{{ local.nome }}</h3>
+    </div>
+    <!-- Dados Relevantes -->
+    <div class="row tile_count">
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-signal"></i> Nº de Sensores</span>
+            <div class="count">{{ local.sensores|length }}</div>
+            <span class="count_bottom">Sensores cadastrados</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-map-marker"></i>Área monitorada</span>
+            <div class="count green">{{ local.area }} <small>km²</small></div>
+            <span class="count_bottom">{{ local.cidade }}, {{ local.estado }}</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-clock-o"></i> Tempo Monitorado</span>
+            <div class="count">{{ local.idade }} <small>dias</small></div>
+            <span class="count_bottom"> Desde {{ local.startdate }}</span>
+        </div>
+
+    </div>
+
+    <!-- Gráfico experimental. -->
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bar-chart"></i>
+                        Dados dos sensores
+                        <small>Resumo da mudança climática</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab1" class="nav nav-tabs bar_tabs right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content33" role="home-tabb" id="profile-tabb3" data-toggle="tab" aria-controls="home" aria-expanded="true">Temperatura</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content22" role="tab" id="profile-tabb" data-toggle="tab" aria-controls="profile" aria-expanded="false">Humidade Ar</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content11" id="tab" role="tab" data-toggle="tab" aria-controls="profile" aria-expanded="false">Humidade Solo</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent2" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content11"
+                                 aria-labelledby="home-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <canvas id="HumidadeSolo"></canvas>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade active" id="tab_content22" aria-labelledby="home-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <canvas id="HumidadeAr"></canvas>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade active" id="tab_content33" aria-labelledby="home-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <canvas id="Temperatura"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
+
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        var dataTemp = [];
+        var dataHumSolo = [];
+        var dataHumAr = [];
+        var idSensores = [];
+        var i=0;
+
+        {% for sensor in local.sensores %}
+            dataTemp.push([]);
+            dataHumSolo.push([]);
+            dataHumAr.push([]);
+            idSensores.push("{{ sensor.id }}");
+            {% for item in sensor.temp %}
+                dataTemp[i].push("{{ item.0 }}#{{ item.1 }}");
+            {% endfor %}
+            {% for item in sensor.umi_solo %}
+                dataHumSolo[i].push("{{ item.0 }}#{{ item.1 }}");
+            {% endfor %}
+            {% for item in sensor.umi_ar %}
+                dataHumAr[i].push("{{ item.0 }}#{{ item.1 }}");
+            {% endfor %}
+            i++;
+        {% endfor %}
+
+        console.log(dataHumAr);
+
+    </script>
+    <script>
+        $("select").click(function() {
+            var open = $(this).data("isopen");
+            if(open) {
+                window.location.href = $(this).val()
+            }
+            //set isopen to opposite so next time when use clicked select box
+            //it wont trigger this event
+            $(this).data("isopen", !open);
+        });
+    </script>
+    <script src="/static/js/charts.js"></script>
+{% endblock javascripts %}
