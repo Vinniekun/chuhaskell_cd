@@ -29,4 +29,5 @@ urlpatterns = [
          }, name='login'),
     url(r'^sair$', logout, {'next_page': 'login'}, name='logout'),
     path('', include('core.urls')),
+    path('sensores/', include('sensor.urls', namespace='sensor',)),
 ]
