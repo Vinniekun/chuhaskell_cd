@@ -6,10 +6,6 @@
 
 Ferramenta de monitoramento destinado ao agronegócio, utilizando tabelas, gráficos e sensores.
 
-## Screenshots
-
-
-
 ## Estrutura do Projeto:
 
 ### Sensores
