@@ -1,0 +1,55 @@
+<div class="row">
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% endfor %}
+
+    <div class="form-group">
+        {% for field in form %}
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                   for="{{ field.label|slugify }}">{{ field.label }}
+            </label>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {{ field.help_text|safe }}
+                {{ field }}
+                <ul class="parsley-errors-list filled" id="parsley-id-7">
+                    {% for error in field.errors %}
+                        <li class="parsley-required">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+    <div class=""></div>
+</div>
+<div class="form-group">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <a href="javascript:history.go(-1)">
+            <button class="btn btn-primary" type="button">Cancela</button>
+        </a>
+        <button class="btn btn-primary" type="reset">Limpar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        {% if 'change' in request.path %}
+        <button type="button" class="btn btn-danger" style="float:right" data-toggle="modal" data-target="#excluir">Excluír</button>
+        <div class="modal fade" id="excluir" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Tem certeza que deseja excluír esse ítem?</h4>
+                    </div>
+                    <div class="modal-body">
+                        Isso não poderá ser revertido.
+                    </div>
+                    <div class="modal-footer">
+                        <a href="../delete"><button class="btn btn-danger" type="button">Sim</button></a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

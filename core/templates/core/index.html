@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            height: 300px!important;
+            width: 500px;
+        }
+    </style>
+    <!-- Dados Relevantes -->
+    <div class="row tile_count">
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Consumo de energia</span>
+            <div class="count">{{ consumoSemana1 }}
+                <small>w</small>
+            </div>
+            <span class="count_bottom"><i class="green">{{ consumoPorcentagem }}% </i> Comparado a semana passada</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Problemas aguardando manutenção</span>
+            <div class="count green">2,500</div>
+            <span class="count_bottom"><i class="verde"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Problemas identificados no último mês</span>
+            <div class="count">4,567</div>
+            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-clock-o"></i> Tempo médio de resolução de problemas</span>
+            <div class="count">123.50</div>
+            <span class="count_bottom"><i class="verde"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+        </div>
+
+    </div>
+
+    <!-- Gráfico experimental. -->
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2><i class="fa fa-bar-chart"></i>
+                        Resumo de Consumo
+                        <small>Resumo do consumo total de energia</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab1" class="nav nav-tabs bar_tabs right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tab_content11" id="home-tabb" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">Mês</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content22" role="tab" id="profile-tabb" data-toggle="tab" aria-controls="profile" aria-expanded="false">Semana</a>
+                            </li>
+                            <li role="presentation" class="">
+                                <a href="#tab_content33" role="tab" id="profile-tabb3" data-toggle="tab" aria-controls="profile" aria-expanded="false">Dia</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent2" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content11"
+                                 aria-labelledby="home-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <canvas id="consumoTotalMes"></canvas>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content22" aria-labelledby="profile-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <canvas id="consumoTotalSemana"></canvas>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content33" aria-labelledby="profile-tab">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <canvas id="consumoTotalDia"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /dados relevantes-->
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Meus Ambientes
+                        <small>Selecione o ambiente que deseja obter informações</small>
+                    </h2>
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </li>
+                    </ul>
+                    <div class="title_right">
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {#AMBIENTES#}
+                    <div class="col-md-4 col-sm-5 form-group pull-right top_search">
+                        <form role="search" action="">
+                            <div class="input-group">
+                                <input class="form-control" name="q" placeholder="Pesquisar Ambiente" type="text">
+                                <span class="input-group-btn">
+                          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-1 col-sm-1 form-group pull-right top_search">
+                        <a href="">
+                            <button class="btn btn-block" style="background-color:#e1e1e1;"><i class="fa fa-eye"></i> Ver todos</button>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        {% for ambiente in ambientes %}
+                            <a href="">
+                                <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                                    <div class="x_panel fixed_height_390">
+                                        <div class="x_title">
+                                            <h2>{{ ambiente.id_setor.id_andar.id_bloco.id_local }}</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <div style="text-align: center; margin-bottom: 17px; height: 50%">
+                                                <img src="" height="100px">
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="content">
+                                                Bloco: {{ ambiente.id_setor.id_andar.id_bloco }}<br>
+                                                Andar: {{ ambiente.id_setor.id_andar }}<br>
+                                                Setor: {{ ambiente.id_setor }}<br>
+                                                Ambiente: {{ ambiente }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if request.user.is_staff %}
+        <h3>Administração</h3>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <a href="">
+                            <div class="icon"><i class="fa fa-user"></i></div>
+                            <div class="count">{{ countUsuarios }}</div>
+                            <h3>Usuários</h3>
+                            <p>Consultar ou cadastrar usários para localidades.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-building"></i></div>
+                            <div class="count">{{ locais }}</div>
+                            <h3>Empresas</h3>
+                            <p>Consultar ou cadastrar Localidades.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-university"></i></div>
+                            <div class="count">{{ countMunicipios }}</div>
+                            <h3>Municípios</h3>
+                            <p>Consultar ou cadastrar municípios</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-globe"></i></div>
+                            <div class="count">{{ countEstados }}</div>
+                            <h3>Estados</h3>
+                            <p>Consultar ou cadastrar Estados</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        var newDataMes = [];
+        var newDataSemana = [];
+        var newDataDia = [];
+
+        {% for item in consumoMes %}
+            newDataMes.push("{{ item.0 }} {{ item.1 }}");
+        {% endfor %}
+
+        {% for item in consumoSemana2 %}
+            newDataSemana.push("{{ item.0 }} {{ item.1 }}");
+        {% endfor %}
+
+        {% for item in consumoDia %}
+            newDataDia.push("{{ item.0 }} {{ item.1 }}");
+        {% endfor %}
+    </script>
+    <script src="/static/js/charts.js"></script>
+{% endblock javascripts %}

@@ -1,0 +1,19 @@
+<div class="bread-crumb">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li><i class="fa fa-sitemap"></i></li>
+            {% for url, label in breadcrumbs %}
+                <li class="breadcrumb-item">
+                    {% ifnotequal forloop.counter breadcrumbs_total %}
+                        <a href="{{ url }}">{{ label|safe }}</a>
+                    {% else %}
+                        {{ label|safe }}
+                    {% endifnotequal %}
+                    {% if not forloop.last %}
+{#                        <span class="divider"></span>#}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    </nav>
+</div>
