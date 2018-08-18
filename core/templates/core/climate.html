@@ -1,0 +1,315 @@
+{% extends "base.html" %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            height: 300px!important;
+            width: 500px;
+        }
+    </style>
+    <!-- Dados Relevantes -->
+    <div class="row tile_count">
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Consumo de energia</span>
+            <div class="count">{{ consumoSemana1 }}
+                <small>w</small>
+            </div>
+            <span class="count_bottom"><i class="green">{{ consumoPorcentagem }}% </i> Comparado a semana passada</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Problemas aguardando manutenção</span>
+            <div class="count green">2,500</div>
+            <span class="count_bottom"><i class="verde"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-user"></i> Problemas identificados no último mês</span>
+            <div class="count">4,567</div>
+            <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
+        </div>
+        <div class="col-md-3 col-sm-4 col-xs-12 tile_stats_count">
+            <span class="count_top"><i class="fa fa-clock-o"></i> Tempo médio de resolução de problemas</span>
+            <div class="count">123.50</div>
+            <span class="count_bottom"><i class="verde"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+        </div>
+
+    </div>
+
+    
+
+    <!-- start of weather widget -->
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="x_panel">
+          <div class="x_title">
+            <h2>Today's Weather <small>Sessions</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="#">Settings 1</a>
+                  </li>
+                  <li><a href="#">Settings 2</a>
+                  </li>
+                </ul>
+              </li>
+              <li><a class="close-link"><i class="fa fa-close"></i></a>
+              </li>
+            </ul>
+            <div class="clearfix"></div>
+          </div>
+          <div class="x_content">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="temperature"><b>Monday</b>, 07:30 AM
+                  <span>F</span>
+                  <span><b>C</b>
+                                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="weather-icon">
+                  <span>
+                                      <canvas height="84" width="84" id="partly-cloudy-day"></canvas>
+                                  </span>
+
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="weather-text">
+                  <h2>Texas
+                                      <br><i>Partly Cloudy Day</i>
+                                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="weather-text pull-right">
+                <h3 class="degrees">23</h3>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+
+
+            <div class="row weather-days">
+              <div class="col-sm-2">
+                <div class="daily-weather">
+                  <h2 class="day">Mon</h2>
+                  <h3 class="degrees">25</h3>
+                  <span>
+                                          <canvas id="clear-day" width="32" height="32">
+                                          </canvas>
+
+                                  </span>
+                  <h5>15
+                                      <i>km/h</i>
+                                  </h5>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="daily-weather">
+                  <h2 class="day">Tue</h2>
+                  <h3 class="degrees">25</h3>
+                  <canvas height="32" width="32" id="rain"></canvas>
+                  <h5>12
+                                      <i>km/h</i>
+                                  </h5>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="daily-weather">
+                  <h2 class="day">Wed</h2>
+                  <h3 class="degrees">27</h3>
+                  <canvas height="32" width="32" id="snow"></canvas>
+                  <h5>14
+                                      <i>km/h</i>
+                                  </h5>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="daily-weather">
+                  <h2 class="day">Thu</h2>
+                  <h3 class="degrees">28</h3>
+                  <canvas height="32" width="32" id="sleet"></canvas>
+                  <h5>15
+                                      <i>km/h</i>
+                                  </h5>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="daily-weather">
+                  <h2 class="day">Fri</h2>
+                  <h3 class="degrees">28</h3>
+                  <canvas height="32" width="32" id="wind"></canvas>
+                  <h5>11
+                                      <i>km/h</i>
+                                  </h5>
+                </div>
+              </div>
+              <div class="col-sm-2">
+                <div class="daily-weather">
+                  <h2 class="day">Sat</h2>
+                  <h3 class="degrees">26</h3>
+                  <canvas height="32" width="32" id="cloudy"></canvas>
+                  <h5>10
+                                      <i>km/h</i>
+                                  </h5>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- end of weather widget -->
+
+    <!-- /dados relevantes-->
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Meus Ambientes
+                        <small>Selecione o ambiente que deseja obter informações</small>
+                    </h2>
+
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </li>
+                    </ul>
+                    <div class="title_right">
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    {#AMBIENTES#}
+                    <div class="col-md-4 col-sm-5 form-group pull-right top_search">
+                        <form role="search" action="">
+                            <div class="input-group">
+                                <input class="form-control" name="q" placeholder="Pesquisar Ambiente" type="text">
+                                <span class="input-group-btn">
+                          <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                        </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-1 col-sm-1 form-group pull-right top_search">
+                        <a href="">
+                            <button class="btn btn-block" style="background-color:#e1e1e1;"><i class="fa fa-eye"></i> Ver todos</button>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        {% for ambiente in ambientes %}
+                            <a href="">
+                                <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                                    <div class="x_panel fixed_height_390">
+                                        <div class="x_title">
+                                            <h2>{{ ambiente.id_setor.id_andar.id_bloco.id_local }}</h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <div style="text-align: center; margin-bottom: 17px; height: 50%">
+                                                <img src="" height="100px">
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="content">
+                                                Bloco: {{ ambiente.id_setor.id_andar.id_bloco }}<br>
+                                                Andar: {{ ambiente.id_setor.id_andar }}<br>
+                                                Setor: {{ ambiente.id_setor }}<br>
+                                                Ambiente: {{ ambiente }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if request.user.is_staff %}
+        <h3>Administração</h3>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                        <a href="">
+                            <div class="icon"><i class="fa fa-user"></i></div>
+                            <div class="count">{{ countUsuarios }}</div>
+                            <h3>Usuários</h3>
+                            <p>Consultar ou cadastrar usários para localidades.</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-building"></i></div>
+                            <div class="count">{{ locais }}</div>
+                            <h3>Empresas</h3>
+                            <p>Consultar ou cadastrar Localidades.</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-university"></i></div>
+                            <div class="count">{{ countMunicipios }}</div>
+                            <h3>Municípios</h3>
+                            <p>Consultar ou cadastrar municípios</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <a href="">
+                        <div class="tile-stats">
+                            <div class="icon"><i class="fa fa-globe"></i></div>
+                            <div class="count">{{ countEstados }}</div>
+                            <h3>Estados</h3>
+                            <p>Consultar ou cadastrar Estados</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+  {{ block.super}}
+  <!-- Chart.js -->
+  <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/static/vendors/gauge.js/dist/gauge.min.js"></script>
+  <!-- Skycons -->
+  <script src="/static/vendors/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/static/vendors/Flot/jquery.flot.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/static/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/static/vendors/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+{% endblock javascripts %}
