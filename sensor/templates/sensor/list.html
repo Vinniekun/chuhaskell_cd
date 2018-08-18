@@ -41,6 +41,7 @@
                                 <th>ID</th>
                                 <th>Longitude</th>
                                 <th>Latitude</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,6 +50,7 @@
                                     <td>{{ sensor.0 }}</td>
                                     <td>{{ sensor.1 }}</td>
                                     <td>{{ sensor.2 }}</td>
+                                    <td><a href="{% url 'sensor:sensor' sensor.0 %}"><button class="btn btn-block btn-info">Ver Dados</button></a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>

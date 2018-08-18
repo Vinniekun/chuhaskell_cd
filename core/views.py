@@ -61,7 +61,7 @@ def graphs(request):
     local_objs = Local.objects.filter(usuario=request.user.id)
     id = request.GET.get('id') or local_objs[0].id
 
-    local_items = local_objs.values_list('nome','id')
+    local_items = list(local_objs.values_list('nome','id'))
     local = Local.objects.filter(usuario=request.user.id, id=id)[0]
     date_past = datetime.now().date() - timedelta(days=30)
     hist_objs = Historico.objects
@@ -77,17 +77,21 @@ def graphs(request):
             local.coord_NW_lat, local.coord_SE_long,
             local.coord_SE_lat, local.coord_SE_long
         )),
-        'sensores': []
+        'sensores': [],
+        'idade': (datetime.now(hist_objs.all()[0].time.tzinfo) - hist_objs.all()[0].time).days
     }
     sensores = Sensor.objects.filter(local=local.id)
     for sensor in sensores:
         sensor_data = {
             'id': sensor.id
         }
-        sensor_data['temp'] = hist_objs.values_list('time', 'temperatura').filter(time__gte=date_past)
-        sensor_data['umi_solo'] = hist_objs.values_list('time', 'umidade_solo').filter(time__gte=date_past)
-        sensor_data['umi_ar'] = hist_objs.values_list('time', 'umidade_ar').filter(time__gte=date_past)
+        sensor_data['temp'] = list(hist_objs.filter(time__gte=date_past).values_list('time', 'temperatura'))
+        sensor_data['umi_solo'] = list(hist_objs.filter(time__gte=date_past).values_list('time', 'umidade_solo'))
+        sensor_data['umi_ar'] = list(hist_objs.filter(time__gte=date_past).values_list('time', 'umidade_ar'))
+        for n in ['temp', 'umi_solo', 'umi_ar']:
+            for i in range(len(sensor_data[n])):
+                sensor_data[n][i] = [sensor_data[n][i][0].strftime('%m/%d-%H:%M'), sensor_data[n][i][1]]
         graph_data['sensores'].append(sensor_data)
-    
+
     return render(request, 'core/graphs.html', {'local_items': local_items, 'local': graph_data})
 

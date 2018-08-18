@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Sensor, Local
-
+from .models import Sensor, Local, Historico
+from datetime import datetime, timedelta
 
 # Create your views here.
 def sensores(request):
@@ -13,3 +13,13 @@ def sensores(request):
         'locais': sensores,
     }
     return render(request, 'sensor/list.html', context)
+
+def sensor(request, id):
+    ago = datime.now() - timedelta(days=30)
+    sensor = Sensor.objects.get(id=id)
+    historico = Historico.objects.filter(sensor=sensor).values_list()
+    context = {
+        'sensor': sensor,
+        'historico': historico,
+    }
+    return render(request, 'sensor/sensor.html', context)

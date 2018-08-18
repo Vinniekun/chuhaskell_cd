@@ -1,32 +1,5 @@
-{% extends "base.html" %}
-
-{% block title %} Sobre {% endblock title %}
-
-{% block stylesheets %}
-    {{ block.super }}
-    <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-{% endblock stylesheets %}
-
-{% load django_bootstrap_breadcrumbs %}
-
-{% block breadcrumbs %}
-    {{ block.super }}
-    {% breadcrumb 'Sobre' 'sobre' %}
-{% endblock %}
-
-
-{% block content %}
-   SOBRE
-{% endblock content %}
-
-{% block javascripts %}
-    {{ block.super }}
-    <!-- Datatables -->
-    <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+ <!-- Datatables -->
+    <script src="/static/vendors/datatables.net/js/jquery.dataTables.js"></script>
     <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="/static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
     <script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
@@ -41,4 +14,3 @@
     <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
     <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
-{% endblock javascripts %}

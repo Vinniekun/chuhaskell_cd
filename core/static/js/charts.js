@@ -1,6 +1,135 @@
 /* Arquivo definido para armazenar as configs destinadas 
    ao plot dos gráficos da plataforma. */
 
+   $("#HumidadeSolo").ready( function() {
+	var ctx = document.getElementById("HumidadeSolo").getContext('2d');
+	var datasets = [];
+	var labels = [];
+
+	console.log(dataHumSolo);
+
+	for(var i = 0; i < dataHumSolo.length; i++) {
+		var dataToPlot = []; labelsToPlot = [];
+		for (var j=0; j < dataHumSolo[i].length; j++){
+			dataToPlot.push(dataHumSolo[i][j].split('#')[1]);
+			labelsToPlot.push(dataHumSolo[i][j].split('#')[0]);
+		}
+		datasets.push({
+			label: idSensores[i],
+			steppedLine: false,
+			data: dataToPlot,
+			//borderColor: 'rgba(75, 192, 192, 1)',
+			fill: false,
+		});
+		if (i==0)
+			labels = labelsToPlot;
+    }
+
+	var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+			labels: labels,
+			datasets: datasets
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+		    scales: {
+		        yAxes: [{
+		            ticks: {
+		                beginAtZero:true
+		            }
+		        }]
+		    }
+		}
+	});
+});
+
+$("#HumidadeAr").ready( function() {
+	var ctx = document.getElementById("HumidadeAr").getContext('2d');
+	var datasets = [];
+	var labels = [];
+
+
+	for(var i = 0; i < dataHumAr.length; i++) {
+		var dataToPlot = []; labelsToPlot = [];
+		for (var j=0; j < dataHumAr[i].length; j++){
+			dataToPlot.push(dataHumAr[i][j].split('#')[1]);
+			labelsToPlot.push(dataHumAr[i][j].split('#')[0]);
+		}
+		datasets.push({
+			label: idSensores[i],
+			steppedLine: false,
+			data: dataToPlot,
+			//borderColor: 'rgba(75, 192, 192, 1)',
+			fill: false,
+		});
+		if (i==0)
+			labels = labelsToPlot;
+    }
+
+	var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+			labels: labels,
+			datasets: datasets
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+		    scales: {
+		        yAxes: [{
+		            ticks: {
+		                beginAtZero:true
+		            }
+		        }]
+		    }
+		}
+	});
+});
+
+$("#Temperatura").ready( function() {
+	var ctx = document.getElementById("Temperatura").getContext('2d');
+	var datasets = [];
+	var labels = [];
+
+	for(var i = 0; i < dataTemp.length; i++) {
+		var dataToPlot = []; labelsToPlot = [];
+		for (var j=0; j < dataTemp[i].length; j++){
+			dataToPlot.push(dataTemp[i][j].split('#')[1]);
+			labelsToPlot.push(dataTemp[i][j].split('#')[0]);
+		}
+		datasets.push({
+			label: idSensores[i],
+			steppedLine: false,
+			data: dataToPlot,
+			//borderColor: 'rgba(75, 192, 192, 1)',
+			fill: false,
+		});
+		if (i==0)
+			labels = labelsToPlot;
+    }
+
+	var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+			labels: labels,
+			datasets: datasets
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+		    scales: {
+		        yAxes: [{
+		            ticks: {
+		                beginAtZero:true
+		            }
+		        }]
+		    }
+		}
+	});
+});
+
 $("#consumoTotalMes").ready( function() {
 	var ctx = document.getElementById("consumoTotalMes").getContext('2d');
 
@@ -94,47 +223,6 @@ $("#consumoTotalDia").ready( function() {
 				borderColor: 'rgba(75, 192, 192, 1)',
 				fill: false,
 			}]
-		},
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-		    scales: {
-		        yAxes: [{
-		            ticks: {
-		                beginAtZero:true
-		            }
-		        }]
-		    }
-		}
-	});
-});
-
-$("#HumidadeSolo").ready( function() {
-	var ctx = document.getElementById("HumidadeSolo").getContext('2d');
-	var datasets = [];
-	var labels = [];
-
-	for(var i = 0; i < dataHumSolo.length; i++) {
-		var dataToPlot = []; labelsToPlot = [];
-		for (var j=0; j < dataHumSolo[i].length; j++){
-			dataToPlot.push(dataHumSolo[i].split('#')[1]);
-			labelsToPlot.push(dataHumSolo[i].split('#')[0]);
-		}
-		datasets.push({
-			label: idSensores[i],
-			steppedLine: false,
-			data: dataToPlot,
-			//borderColor: 'rgba(75, 192, 192, 1)',
-			fill: false,
-		});
-		labels.push(labelsToPlot);
-    }
-
-	var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-			labels: labels,
-			datasets: datasets
 		},
 		options: {
 			responsive: true,

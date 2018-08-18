@@ -14,11 +14,9 @@
                     <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href=""><i class="fa fa-user pull-right" style="color: #24292e"></i> Perfil</a>
+                    <li><a href="{% url 'user:profile' request.user.username %}"><i class="fa fa-user pull-right" style="color: #24292e"></i> Perfil</a>
                     </li>
-                    <li><a href=""><i class="fa fa-life-bouy pull-right" style="color: #24292e"></i> Suporte</a>
-                    </li>
-                    <li><a href=""><i class="fa fa-sign-out pull-right" style="color: #24292e"></i>
+                    <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right" style="color: #24292e"></i>
                         Sair</a></li>
                 </ul>
             </li>

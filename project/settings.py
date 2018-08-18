@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'core',
     'user',
     'sensor',
+    'adm',
     # libs
     'widget_tweaks',
     'watson',

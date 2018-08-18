@@ -8,6 +8,11 @@ class Local(models.Model):
     estado = models.CharField('Estado', max_length=50)
     cidade = models.CharField('Cidade', max_length=50)
     nome = models.CharField('Nome de Identificação', max_length=50, unique=True)
+    
+    def locais(self, filename):
+        return 'locais/' + str(self.empresa) + '.' + filename.split('.')[-1]
+
+    dir_imagem = models.ImageField('Imagem', upload_to=locais, blank=True, null=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     coord_NW_long = models.FloatField('Coordenada NW long')
     coord_NW_lat = models.FloatField('Coordenada NW lat')
@@ -20,8 +25,13 @@ class Local(models.Model):
 
 class Sensor(models.Model):
     local = models.ForeignKey(Local, on_delete=models.CASCADE)
+    status = models.BooleanField('Ligado')
     longitude = models.FloatField('Longitude')
     latitude = models.FloatField('Latitude')
+
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('sensor:sensor', kwargs={'id': self.id})
 
     def __str__(self):
         return self.local.nome + '/' + str(self.id)
@@ -35,5 +45,9 @@ class Historico(models.Model):
     umidade_ar = models.FloatField('Umidade Ar')
     luz = models.FloatField('Iluminação')
 
+
+    class Meta:
+        ordering = ['time']
+
     def __str__(self):
-        return self.sensor
+        return self.sensor.__str__()

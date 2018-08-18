@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Meus Sensores {% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+{% endblock %}
+
+{% load django_bootstrap_breadcrumbs %}
+
+{% block breadcrumbs %}
+    {{ block.super }}
+    {#    {% breadcrumb "Empresas" "endereco:locais" %}#}
+{% endblock %}
+
+{% block content %}
+    <!-- /dados relevantes-->
+    <div class="clearfix"></div>
+    {{ sensor }}
+    {{ historico }}
+
+
+{% endblock content %}
+
+{% block javascripts %}
+    {{ block.super }}
+{% endblock javascripts %}
