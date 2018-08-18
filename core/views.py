@@ -8,9 +8,15 @@ from datetime import datetime
 # Create your views here.
 @login_required
 def index(request):
+    #dados da primeira cidade
+    _locals = Local.objects.filter(usuario=request.user.id)
+    local = _locals[0]
+    forecast = get_day_forecast(local.coord_NW_lat, local.coord_NW_lat)
+    
+    #grafico
     consumoDia = [[i, randint(100, 200)] for i in range(20)]
     print(consumoDia)
-    return render(request, 'core/index.html', {'consumoDia':consumoDia})
+    return render(request, 'core/index.html', {'consumoDia':consumoDia, 'local':local, 'forecast':forecast})
 
 @login_required
 def climate(request):
